@@ -31,12 +31,15 @@ export class HomeComponent implements OnInit {
       this.memberService.getAllTrainers().subscribe((data) => {
        this.trainers = data;
        console.log("trainers",this.trainers)
+      
       })    
     }
 
     send(id : string) {
-      //console.log(email)
+        
         this.router.navigate(['trainerview', id]);
       }
-
+    print(id:any){
+      console.log(id);
+    }
 }
