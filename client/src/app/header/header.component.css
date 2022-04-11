@@ -1,0 +1,20 @@
+ul {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+}
+
+.mat-toolbar{
+  background: rgb(236, 234, 234);
+}
+button , a {
+  text-decoration: none;
+  color : rgb(0, 0, 0);
+}
+ul {
+  display: flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
