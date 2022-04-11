@@ -11,6 +11,7 @@ const nPlan = require("../models/nutrition.model");
 const wPlan = require("../models/workout.model");
 
 
+
 exports.register = async (req, res) => {
 
   const v = new Validator(req.body, {
