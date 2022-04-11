@@ -38,7 +38,7 @@ export class TrainerViewComponent implements OnInit {
             first_name: data.first_name,
             last_name: data.last_name,
             profile_image: data.profile_image,
-            introduction: "test"
+            introduction: "Director and Senior Trainer of Universal Soft Skills Academy and Universal Soft Skills Solution Worked for 16 years for an International Personality Development Centeras a Senior Trainer in Motivational Speaker and Soft Skills"
           };
         })
       }
