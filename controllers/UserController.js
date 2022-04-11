@@ -9,7 +9,7 @@ exports.getAllTrainer = (req, res) => {
    
   
 
-    trainer.find({ first_name: "test" })
+    trainer.find()
     .then(data => {
       res.send(data);
     })
