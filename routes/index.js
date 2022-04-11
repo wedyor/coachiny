@@ -9,12 +9,16 @@ module.exports=(app)=>{
 			'message':'Our first endpoint'
 		});
 	});
+
+	//Member Routes
 	app.use('/auth',MemberRouter);
 	app.use('/profile',MemberRouter);
 
+	//Trainer Router
 	app.use('/auth/trainer',TrainerRouter);
 	app.use('/trainer/profile',TrainerRouter);
 	
+	//Plans Routes
 	app.use('/user',UserRouter);
 	app.use('/plan',plansRouter);
 
