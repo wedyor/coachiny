@@ -1,32 +1,15 @@
-
 <body>
+<h2 style="text-align:center">User Profile Card</h2>
+<div *ngFor="let Trainers of trainers; let i = index">
+<div class="card">
+  <img src="../../assets/coach.png" alt="John" style="width:100%">
+  <h1>{{Trainers.first_name}} {{Trainers.last_name}}</h1>
+  <p class="title">Certified Personal Trainer</p>
+  <p>{{Trainers.email}}</p>
 
-<table class="table table-bordered" *ngIf="trainers.length > 0">
-    <thead class="table-success">
-      <tr>
-        
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-
-        <th scope="col">Email</th> 
-        <th scope="col">Contact</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let Trainers of trainers; let i = index">
-        <td>{{Trainers.first_name}}</td> 
-        <td>{{Trainers.last_name}}</td>
-        <td>{{Trainers.email}}</td>
-
-        <td class="text-left edit-block">
-            <button type="button" class="btn btn-success btn-sm" >Hire Trainer</button>
-            <button type="button" class="btn btn-danger btn-sm"(click)="send(trainers[i]._id)">View Profile</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
+  <p> <button type="button" class="btn btn-danger btn-sm"(click)="send(trainers[i]._id)">View Profile</button></p>
+</div>
+</div>
 </body>
+
+
