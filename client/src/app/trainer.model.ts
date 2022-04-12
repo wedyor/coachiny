@@ -7,4 +7,5 @@ export interface TrainerData {
     introduction: string;
     profile_image: string;
 	members: Array<string>;
+	status: string;
 }

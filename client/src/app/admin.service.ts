@@ -23,8 +23,9 @@ export class AdminService {
       email: string;
       password: string;
       profile_image: string;
+      status: string;
       
-    }>("http://localhost:3000/user/user-list");
+    }>("http://localhost:3000/admin/home");
 
   }
 }
