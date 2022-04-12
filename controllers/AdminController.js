@@ -23,20 +23,7 @@ exports.getAllTrainer = (req, res) => {
 
 
 
-  exports.updateStatus1 = (req, res) => {
-
-    trainer
-     .updateOne({ _id: req.params.id }, { status: "activated" })
-
-    .then((result) => {
-      if (result.modifiedCount > 0) {
-        res.status(200).json({ message: "Update successful !" });
-      } else {
-        res.status(401).json({ message: "errorr" });
-      }
-    });
-  };
-
+  
 
 
 
