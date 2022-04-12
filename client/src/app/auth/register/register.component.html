@@ -4,7 +4,8 @@
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
-						<h5 class="card-title text-center">MEMBER REGISTER</h5>
+						<h5 class="card-title text-center" *ngIf="this.isTrainer == false">MEMBER REGISTER</h5>
+						<h5 class="card-title text-center" *ngIf="this.isTrainer == true">TRAINER REGISTER</h5>
 						<form class="form-signin" (submit)="onSignup(signupForm)" #signupForm="ngForm" >
 							<div class="form-group">
 								<label for="inputEmail">First Name *</label>
@@ -30,7 +31,14 @@
 									id="inputPassword" aria-describedby="passwordHelp" placeholder="Enter password"
 									ngModel>
 							</div>
-                               <a mat-button href="/register" >Register as a Trainer</a>
+							<div class="form-group" *ngIf="this.isTrainer == true">
+								<label for="inputPassword">Introduction *</label>
+								<input type="text" name="intro" matInput class="form-control rounded"
+									id="inputIntroduction" aria-describedby="Introduction" placeholder="Enter your Introduction"
+									ngModel>
+							</div>
+                               <a mat-button (click)="trainer()" *ngIf="this.isTrainer == false">Register as a Trainer</a>
+							   <a mat-button (click)="notTrainer()" *ngIf="this.isTrainer == true">Register as a Member</a>
 					       <br>
 						   <br>
 							<button id="submitButton" class="btn btn-lg btn-primary btn-block text-uppercase"

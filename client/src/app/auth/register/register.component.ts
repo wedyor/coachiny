@@ -1,36 +1,54 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { NgForm } from "@angular/forms";
-import { AuthService } from '../auth.service';
+import { AuthService } from "../auth.service";
 
 @Component({
-	selector: 'app-register',
-	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.css']
+  selector: "app-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"],
 })
-export class RegisterComponent implements OnInit,OnDestroy {
-	private authStatusSub: Subscription = new Subscription;
-	checkField = true;
+export class RegisterComponent implements OnInit, OnDestroy {
+  private authStatusSub: Subscription = new Subscription();
+  checkField = true;
+  isTrainer: boolean = false;
+  constructor(private authService: AuthService) {}
 
-	constructor(
-		private authService: AuthService,
-	) { }
+  ngOnInit() {
+    this.isTrainer = false;
+    this.authStatusSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus) => {});
+  }
 
-	ngOnInit() {
-		this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
-			authStatus => { }
-		);
+  onSignup(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    if (this.isTrainer == false) {
+      this.authService.createMember(
+        form.value.firstname,
+        form.value.lastname,
+        form.value.email,
+        form.value.password
+      );
+    }else {
+		this.authService.createTrainer(
+			form.value.firstname,
+			form.value.lastname,
+			form.value.email,
+			form.value.password,
+			form.value.intro
+		  );
 	}
-
-	onSignup(form: NgForm) {
-		if (form.invalid) {
-			return;
-		}
-		this.authService.createUser(form.value.firstname,form.value.lastname,form.value.email, form.value.password);
-	}
-	ngOnDestroy() {
-		this.authStatusSub.unsubscribe();
-	}
-
-
+  }
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
+  }
+  trainer() {
+    return (this.isTrainer = true);
+  }
+  notTrainer() {
+    return (this.isTrainer = false);
+  }
 }

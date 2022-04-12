@@ -30,13 +30,27 @@ export class AuthService {
   }
 
 
-    createUser(first_name:string, last_name:string, email : string, password: string ){
+    createMember(first_name:string, last_name:string, email : string, password: string ){
       const regData: RegData = {
          first_name:first_name,
          last_name:last_name, 
          email: email, 
          password : password};
       this.http.post("http://localhost:3000/auth/register", regData).subscribe(()=>{
+        this.router.navigate(['/login'])
+      }, error => {
+        this.authStatusListener.next(false);
+      });
+    }
+    createTrainer(first_name:string, last_name:string, email : string, password: string, intro:string ){
+      const regData = {
+         first_name:first_name,
+         last_name:last_name, 
+         email: email, 
+         password : password,
+         intro: intro
+        };
+      this.http.post("http://localhost:3000/auth/trainer/register", regData).subscribe(()=>{
         this.router.navigate(['/login'])
       }, error => {
         this.authStatusListener.next(false);
