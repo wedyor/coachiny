@@ -63,8 +63,6 @@ exports.login = async (req, res) => {
   try {
     let memberData = await member.findOne({ email: req.body.email });
     if (memberData) {
-      //  let trainerData = await trainer.findOne({ email: req.body.email });
-      // if(trainerData) {}
       if (bcrypt.compareSync(req.body.password, memberData.password)) {
         let jwt_secret = process.env.JWT_SECRET || "mysecret";
         let token = jwt.sign(
@@ -87,11 +85,36 @@ exports.login = async (req, res) => {
         });
       }
     } else {
+      let trainerData = await trainer.findOne({ email: req.body.email });
+    if (trainerData) {
+      if (bcrypt.compareSync(req.body.password, trainerData.password)) {
+        let jwt_secret = process.env.JWT_SECRET || "mysecret";
+        let token = jwt.sign(
+          {
+            data: trainerData,
+          },
+          jwt_secret,
+          { expiresIn: "1h" }
+        );
+        return res.status(200).send({
+          message: "login success !",
+          expiresIn: 3600,
+          data: trainerData,
+          token: token,
+        });
+      } else {
+        return res.status(400).send({
+          message: "Incorrect credentials",
+          data: {},
+        });
+      }
+    } else {
       return res.status(400).send({
         message: "Member is not registered",
         data: {},
       });
     }
+  }
   } catch (err) {
     return res.status(400).send({
       message: err.message,
@@ -99,6 +122,8 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+
 exports.check_auth = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];

@@ -13,6 +13,7 @@ exports.register = async (req, res) => {
     last_name: "required|minLength:2|maxLength:100",
     email: "required|email|unique:Member,email",
     password: "required",
+    intro:"required" 
   });
   const matched = await v.check();
   if (!matched) {
@@ -25,6 +26,8 @@ exports.register = async (req, res) => {
       last_name: req.body.last_name,
       email: req.body.email,
       password: req.body.password,
+      intro : req.body.intro,
+      status: "NA"
     });
 
     let trainerData = await newTrainer.save();
