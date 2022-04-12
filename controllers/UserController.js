@@ -9,7 +9,7 @@ exports.getAllTrainer = (req, res) => {
    
   
 
-    trainer.find()
+    trainer.find({status: 'activate'})
     .then(data => {
       res.send(data);
     })
