@@ -29,7 +29,8 @@ import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { TrainerViewComponent } from './trainer-view/trainer-view.component';
 import { nutrtionPlan } from './plans/nutrition/nutrition.component';
-import { workoutPlan } from './plans/workout/workout.component';  
+import { workoutPlan } from './plans/workout/workout.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';  
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { workoutPlan } from './plans/workout/workout.component';
     ErrorComponent,
     TrainerViewComponent,
     nutrtionPlan,
-    workoutPlan
+    workoutPlan,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
