@@ -1,0 +1,27 @@
+<p>admin-home works!</p>
+
+<table class="table table-bordered" >
+    <thead class="table-success">
+      <tr>
+        
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+
+        <th scope="col">Email</th> 
+        <th scope="col">Contact</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Trainers of trainers; let i = index">
+        <td>{{Trainers.first_name}}</td> 
+        <td>{{Trainers.last_name}}</td>
+        <td>{{Trainers.email}}</td>
+
+        <td class="text-left edit-block">
+            <button type="button" class="btn btn-success btn-sm" >Hire Trainer</button>
+            <button type="button" class="btn btn-danger btn-sm">View Profile</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

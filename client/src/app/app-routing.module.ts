@@ -8,7 +8,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { TrainerViewComponent } from './trainer-view/trainer-view.component';
 import { workoutPlan } from './plans/workout/workout.component';
 import { nutrtionPlan } from './plans/nutrition/nutrition.component';
-
+import {AdminHomeComponent} from './admin-home/admin-home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate : [AuthGuard] },
   { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'workout/:id', component: workoutPlan },
   { path: 'nutrition/:id', component: nutrtionPlan },
   { path: 'nutrition', component: nutrtionPlan },
-  { path: 'workout', component: workoutPlan }
+  { path: 'workout', component: workoutPlan },
+  { path: 'admin' , component: AdminHomeComponent},
+
 ];
 
 @NgModule({
