@@ -20,3 +20,4 @@ exports.getAllTrainer = (req, res) => {
       });
     });
   }
+  
