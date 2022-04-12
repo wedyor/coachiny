@@ -24,7 +24,53 @@ export class AdminService {
       password: string;
       profile_image: string;
       
-    }>("http://localhost:3000/user/user-list");
+    }>("http://localhost:3000/admin/home");
 
   }
+
+
+
+  updateStaus(id: string, status:string) {
+
+    this.http.put("http://localhost:3000/admin/home/" + id  , status)
+      .subscribe(Response => {
+        this.router.navigate(["/"]);
+      });
+
+    }
+
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

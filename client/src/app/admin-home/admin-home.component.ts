@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 })
 export class AdminHomeComponent implements OnInit {
   trainers:any = [];
-
+  id:any;
 
   constructor(private adminService: AdminService,private router: Router){ }
 
@@ -29,4 +29,12 @@ export class AdminHomeComponent implements OnInit {
     })    
   }
 
+
+  onUpdateStatus() {
+    this.adminService.updateStaus(
+        this.trainers.id,
+        this.trainers.status
+      );
+    }
+ 
 }
