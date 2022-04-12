@@ -8,6 +8,8 @@ const schema = new mongoose.Schema(
     password: String,
     profile_image: { type: String, default: "" },
     profession: { type: String, default: "trainer" },
+    intro: { type: String, default: "" },
+    status:{ type: String, default: "NA" },
     members: [
       {mid : String , name: String}
     ]
