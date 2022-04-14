@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs'
-import { memberData } from "./member.model";
+import { memberData } from "../models/member.model";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { AuthService } from "./auth/auth.service";
-import { HeadService } from "./header/head.service";
+import { AuthService } from "../auth/auth.service";
+import { HeadService } from "../header/head.service";
 
 
 @Injectable({ providedIn: 'root' })

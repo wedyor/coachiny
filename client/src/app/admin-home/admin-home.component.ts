@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription } from "rxjs";
-import { AdminService } from "../admin.service";
+import { AdminService } from "../services/admin.service";
 import { Router } from "@angular/router";
 
 

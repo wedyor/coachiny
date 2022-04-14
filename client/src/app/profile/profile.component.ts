@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
-import { memberData } from "../member.model";
-import { MemberService } from "../member.service";
+import { memberData } from "../models/member.model";
+import { MemberService } from "../services/member.service";
 import { mimeType } from "./mime-type.validator";
 
 @Component({
