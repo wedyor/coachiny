@@ -8,8 +8,8 @@ const router = express.Router();
 exports.getAllTrainer = (req, res) => {
    
   
-
-    trainer.find({status: 'Activate'})
+  // {status: 'Activate'}
+    trainer.find()
     .then(data => {
       res.send(data);
     })
