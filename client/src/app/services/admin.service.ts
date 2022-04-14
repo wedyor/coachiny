@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs'
-import { memberData } from "./member.model";
-import {TrainerData} from "./trainer.model";
+import { memberData } from "../models/member.model";
+import {TrainerData} from "../models/trainer.model";
 import { Router } from "@angular/router";
 
 

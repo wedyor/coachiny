@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { workoutData } from "../workout.model";
-import { MemberService } from "src/app/member.service";
+import { MemberService } from "src/app/services/member.service";
 import { AuthService } from "src/app/auth/auth.service";
 import { plansService } from "../plans.service";
 

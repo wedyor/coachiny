@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { mimeType } from '../profile/mime-type.validator';
-import { TrainerData } from '../trainer.model';
-import { TrainerService } from '../trainer.service';
+import { TrainerData } from '../models/trainer.model';
+import { TrainerService } from '../services/trainer.service';
 
 @Component({
   selector: 'app-trainer-view',

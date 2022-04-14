@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription } from "rxjs";
 import { AuthService } from "../auth/auth.service";
-import {MemberService} from "../member.service"
+import {MemberService} from "../services/member.service"
 import { Router } from "@angular/router";
 
 @Component({
