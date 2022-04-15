@@ -43,6 +43,7 @@ export class MemberService {
       password: string;
       profile_image: string;
       profession: string;
+      members: Array<string>;
     }>("http://localhost:3000/auth/profile/" + userId);
   }
   updateMember(id: string, first_name: string, last_name: string, email: string, password: string, height: string, weight: string, profile_image:string) {

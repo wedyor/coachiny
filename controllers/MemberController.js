@@ -30,7 +30,7 @@ exports.register = async (req, res) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       email: req.body.email,
-      password: req.body.password,
+      password: req.body.password
     });
     
     let memberData = await newMember.save();
@@ -142,7 +142,7 @@ exports.check_auth = (req, res, next) => {
 exports.getMember = (req, res) => {
   member.find({ _id: req.param("id")}).then((memberData) => {
     if (memberData) {
-      res.status(200).json(memberData[0].toObject());
+      res.status(200).json(memberData[0]);
     } else {
       res.status(404).json({ message: "Member not found !" });
     }
@@ -310,13 +310,13 @@ async function createEmptyPlans(idMember){
 
  const newWplan = new wPlan({
   memberId: a,
-  Monday: "Empty day",
-  Tuesday: "Empty day",
-  Wednesday:"Empty day",
-  Thursday:"Empty day",
-  Friday: "Empty day",
-  Saturday: "Empty day",
-  Sunday: "Empty day"
+  Monday: ["Session 1","Session 2"],
+  Tuesday: ["Session 1","Session 2"],
+  Wednesday:["Session 1","Session 2"],
+  Thursday:["Session 1","Session 2"],
+  Friday: ["Session 1","Session 2"],
+  Saturday: ["Session 1","Session 2"],
+  Sunday: ["Session 1","Session 2"],
 });
 let WplanData = await newWplan.save();
 };

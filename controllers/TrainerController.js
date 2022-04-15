@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const member = require('../models/member.model');
+const mime = require("mime");
 
 exports.register = async (req, res) => {
   const v = new Validator(req.body, {
@@ -110,7 +111,7 @@ exports.check_auth = (req, res, next) => {
 exports.getTrainer = (req, res) => {
   trainer.find({ _id: req.param("id") }).then((TrainerData) => {
     if (TrainerData) {
-      res.status(200).json(TrainerData[0].toObject());
+      res.status(200).json(TrainerData[0]);
     } else {
       res.status(404).json({ message: "Trainer not found !" });
     }
@@ -214,6 +215,7 @@ exports.updatePicture = (req, res) => {
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Update successful !" });
       } else {
+        console.log("here");
         res.status(401).json({ message: "not authorized" });
       }
     });

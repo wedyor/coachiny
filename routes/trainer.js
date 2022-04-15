@@ -12,5 +12,7 @@ router.post('/change-password/:id',TrainerController.change_password);
 router.put('/addmember/:id', TrainerController.addMember);
 router.get('/:id',TrainerController.getTrainer);
 
+router.post("/profileimg/:id", TrainerController.updatePicture);
+router.get("/profileimg/:img", TrainerController.getImage);
 
 module.exports = router;
