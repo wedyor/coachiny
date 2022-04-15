@@ -29,9 +29,45 @@ export class TrainerService {
           profile_image: string;
           profession: string;
           members: Array<string>;
-      }>("http://localhost:3000/trainer/profile/" + userId);
+      }>("http://localhost:3000/auth/trainer/profile/" + userId);
     };  
-
+   
+    async updatePicture(id: string, username: string, image: File) {
+      await this.convertToBase64(image);
+      let a = new FormData();
+      a.append("image", this.imageD);
+      this.http.post("http://localhost:3000/auth/trainer/profileimg/" + id, a)
+        .subscribe(Response => {
+          this.router.navigate(["/"]);
+        });
+  
+    }
+  
+    async convertToBase64(file: File) {
+      const observable = new Observable((subscriber: Subscriber<any>) => {
+        this.readFile(file, subscriber);
+      });
+      this.imageD = await observable.toPromise();
+    }
+  
+    readFile(file: File, subscriber: Subscriber<any>) {
+      const filereader = new FileReader();
+      filereader.readAsDataURL(file);
+      filereader.onload = () => {
+        subscriber.next(filereader.result);
+        subscriber.complete();
+      };
+      filereader.onerror = (error) => {
+        subscriber.error(error);
+        subscriber.complete();
+      };
+    }
+  
+    getImage(img:string){
+      console.log("img service")
+      return this.http.get<{ content: string }>("http://localhost:3000/auth/trainer/profileimg/" + img);
+    }
+  
 };
 
 

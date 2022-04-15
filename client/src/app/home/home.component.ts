@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     readListTrainers(){
       this.memberService.getAllTrainers().subscribe((data) => {
        this.trainers = data;
-       console.log("trainers",this.trainers)
+       console.log(this.trainers[0].profile_image);
       
       })    
     }

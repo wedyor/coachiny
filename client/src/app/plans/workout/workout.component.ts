@@ -46,7 +46,7 @@ export class workoutPlan implements OnInit {
 	this.route.paramMap.subscribe((paramMap: ParamMap) => {
 		if (paramMap.has("id")) {
 			this.memberId = paramMap.get('id');
-			this.plansService.getNPlan(this.memberId).subscribe(workoutData => {
+			this.plansService.getWPlan(this.memberId).subscribe(workoutData => {
 			  this.workoutPlan = {
 				 Monday: workoutData.Monday,
 				 Tuesday: workoutData.Tuesday,
@@ -71,7 +71,7 @@ export class workoutPlan implements OnInit {
 				S2Thursday: this.workoutPlan.Thursday[1],
 				S2Friday: this.workoutPlan.Friday[1],
 				S2Saturday: this.workoutPlan.Saturday[1],
-				S2Sunday: this.workoutPlan.Sunday[1],
+				S2Sunday: this.workoutPlan.Sunday[1]
 			});
 		})
 	this.authService.getMember(this.memberId).subscribe(memberData => {
