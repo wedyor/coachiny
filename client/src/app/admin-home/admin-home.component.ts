@@ -25,7 +25,7 @@ export class AdminHomeComponent implements OnInit {
     this.adminService.getAllTrainers().subscribe((data) => {
      this.trainers = data;
      console.log("trainers",this.trainers)
-    
+        
     })    
   }
 

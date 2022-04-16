@@ -14,24 +14,7 @@ exports.getAllTrainer = (req, res) => {
           err.message || "Some error occurred while retrieving trainers."
       });
     });
-  }
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
+}
 
   exports.updateStatus =(req,res) => {
     console.log("req.params.id",req.params.id);
