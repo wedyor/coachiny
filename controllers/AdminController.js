@@ -14,31 +14,11 @@ exports.getAllTrainer = (req, res) => {
           err.message || "Some error occurred while retrieving trainers."
       });
     });
-  }
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
+}
 
   exports.updateStatus =(req,res) => {
-    console.log("req.params.id",req.params.id);
-      var NewStatus = "Activate"
-    console.log(NewStatus);
-   
-    trainer.updateOne({ _id: req.params.id }, {status: NewStatus })
+    console.log(req.body.testData);
+    trainer.updateOne({ _id: req.params.id }, {status: req.body.testData })
     .then((result) => {
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Update successful !" });
