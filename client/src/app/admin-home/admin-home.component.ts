@@ -13,7 +13,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class AdminHomeComponent implements OnInit {
   trainers:any = [];
   trainer:any;
-  newStatus: string='Activate';
+  Activate: string='Activated';
+  Reject: string='Rejected';
   constructor(private adminService: AdminService,private router: Router,private http: HttpClient){ }
 
   ngOnInit(): void {
@@ -28,21 +29,34 @@ export class AdminHomeComponent implements OnInit {
         
     })    
   }
-  // udpateStatus(id: string){
-  //   this.adminService.changeStatus(this.trainer.id);
-  // }
+
     
     
-    changeStatus(id: string) {
+    ApproveTrainer(id: string) {
     console.log('dkhal lele method');
     let test:any;
     test={
-      testData: this.newStatus
+      testData: this.Activate
     };
     // console.log('Activate');
     this.http.put("http://localhost:3000/admin/home/" + id, test)
     .subscribe(data => {
       console.log(data);
     });
+    window.location.reload();
+    
+  }
+  RejectTrainer(id: string) {
+    console.log('dkhal lele method');
+    let test:any;
+    test={
+      testData: this.Reject
+    };
+    // console.log('Activate');
+    this.http.put("http://localhost:3000/admin/home/" + id, test)
+    .subscribe(data => {
+      console.log(data);
+    });
+    window.location.reload();
   }
 }
