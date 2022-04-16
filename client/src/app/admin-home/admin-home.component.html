@@ -19,9 +19,10 @@
         <td>{{Trainers.email}}</td>
 
         <td class="text-left edit-block">
-            <button type="button" class="btn btn-success btn-sm" >aprove Trainer</button>
-            <button type="button" class="btn btn-danger btn-sm">reject Trainer</button>
+            <button type="button" class="btn btn-success btn-sm"(click)="changeStatus(trainers[i]._id)">aprove Trainer</button>
+            <button type="button" class="btn btn-danger btn-sm" >reject Trainer</button>
         </td>
+     
       </tr>
     </tbody>
   </table>
