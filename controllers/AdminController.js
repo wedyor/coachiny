@@ -3,8 +3,8 @@ const trainer = require("../models/trainer.model")
 exports.getAllTrainer = (req, res) => {
    
   
-
-    trainer.find({ status: "NA"})
+  // { status: "NA"}
+    trainer.find()
     .then(data => {
       res.send(data);
     })
