@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   image : string ='' ;
   form: any;
   b : any;
+  notActivated : boolean = true ;
   imagePreview : string | ArrayBuffer | null = "";
   private authListenerSubs: Subscription = new Subscription();
   constructor(
@@ -43,7 +44,16 @@ export class HomeComponent implements OnInit {
       .subscribe((isAuthenticated) => {
         this.userIsAuthenticated = isAuthenticated;
       });
+
+    let a = localStorage.getItem("status");
+    let b = localStorage.getItem("profession");
+    console.log(a,b);
+    if((b == 'trainer' ) && (a =='NA')){
+       this.notActivated = false ;
+       console.log("activated");
+    }else{
     this.readListTrainers();
+  }
   }
 
  readListTrainers() {

@@ -14,6 +14,7 @@ export class AuthService {
   public userId : any;
   public identifiant: any;
   public profession:any;
+  public status: any;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router){}
@@ -99,11 +100,12 @@ export class AuthService {
           this.userId = response.data;
           this.identifiant = this.userId._id;
           this.profession = this.userId.profession;
+          this.status = this.userId.status;
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime()+ expiresInDuration * 1000);
           console.log(expirationDate);
-          this.saveAuthData(token,expirationDate,this.userId._id,this.profession);  
+          this.saveAuthData(token,expirationDate,this.userId._id,this.profession,this.status);  
           this.router.navigate(['/']);
         }
       }, error => {
@@ -116,6 +118,7 @@ export class AuthService {
   }
   getUserType(){
     let profession = this.userId.profession;
+    let status = this.userId.status;
     console.log(profession);
     return profession;
   }
@@ -151,11 +154,12 @@ export class AuthService {
         this.logout();
       },duration * 1000);
     }
-    private saveAuthData(token : string , expirationDate: Date, userId: string, identifiant:string){
+    private saveAuthData(token : string , expirationDate: Date, userId: string, identifiant:string, status : string){
       localStorage.setItem("token",token);
       localStorage.setItem("expiration", expirationDate.toISOString());
       localStorage.setItem("userId", userId);
       localStorage.setItem("profession", identifiant);
+      localStorage.setItem("status", status);
     }
 
     private clearAuthData(){
@@ -163,6 +167,7 @@ export class AuthService {
       localStorage.removeItem("expiration");
       localStorage.removeItem("userId");
       localStorage.removeItem("profession");
+      localStorage.removeItem("status");
     }
     private getAuthData(){
         const token = localStorage.getItem("token");

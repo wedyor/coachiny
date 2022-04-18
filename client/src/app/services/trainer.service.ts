@@ -89,7 +89,10 @@ export class TrainerService {
           this.router.navigate(["/"]);
         })
     };
-};
+
+
+}
+
 
 
 
