@@ -141,8 +141,9 @@ exports.check_auth = (req, res, next) => {
 
 exports.getMember = (req, res) => {
   member.find({ _id: req.param("id")}).then((memberData) => {
-    if (memberData) {
-      res.status(200).json(memberData[0]);
+    if(memberData) {
+     //console.log(memberData[0].toString());
+     res.status(200).json(memberData[0]);
     } else {
       res.status(404).json({ message: "Member not found !" });
     }

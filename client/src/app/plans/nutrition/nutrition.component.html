@@ -1,19 +1,18 @@
 <body>
     <mat-card class="profile-details">
         <mat-card-title>Nutrition Plan</mat-card-title>
-        <div class="membersLab">
+        <div class="membersLab"  *ngIf="this.profession!= 'member'">
         <label for="membersLab">Choose a member :</label>
         &nbsp; &nbsp;
-        <select name="membersLab" id="membersLab" >
-             <option value="rigatoni">Rigatoni</option>
-             <option value="dave">Dave</option>
-             <option value="pumpernickel">Pumpernickel</option>
-             <option value="reeses">Reeses</option>
-        </select> &nbsp;  &nbsp;
-        <button mat-raised-button color="primary" type="button" class="editPlan">Edit Plan</button>
+        <select id="selectedMember" (change)="viewPlan($event.target)" >
+          <option value ="">   </option>
+             <option *ngFor="let tMembers of members" value={{tMembers.mid}}>{{tMembers.name}}
+             </option>
+        </select> 
+      &nbsp;  &nbsp;
       </div>
         <br>
-      <form [formGroup]="nutriForm" id="nutriForm" >  
+      <form [formGroup]="nutriForm" id="nutriForm"  (submit)="EditNplan(nutriForm)">  
           <div class="Monday">
         <h3>Monday</h3>  <h3>Tuesday</h3>   <h3>Wednesday</h3>  <h3>Thursday</h3>  <h3>Friday</h3>  
         <h3>Saturday</h3>  <h3>Sunday</h3>
@@ -109,7 +108,7 @@
     </div>
 
     <br>
-        <button mat-raised-button color="primary" type="submit" class="savePlan">Save Plan</button>
+        <button mat-raised-button color="primary" type="submit" class="savePlan" *ngIf="this.profession!= 'member'" >Save Plan</button>
       </form>
      </mat-card>
 </body>

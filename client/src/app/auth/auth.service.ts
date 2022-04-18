@@ -12,6 +12,8 @@ export class AuthService {
   private tokenTimer : any;
   public userEmail : any;
   public userId : any;
+  public identifiant: any;
+  public profession:any;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router){}
@@ -82,6 +84,7 @@ export class AuthService {
       members: Array<String>;
     }>("http://localhost:3000/auth/profile/"+userId);
   };
+
     login(email: string ,password: string ) {
       this.userEmail = email;
       const authData: AuthData = {email: email, password : password};
@@ -94,11 +97,13 @@ export class AuthService {
           this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;
           this.userId = response.data;
+          this.identifiant = this.userId._id;
+          this.profession = this.userId.profession;
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime()+ expiresInDuration * 1000);
           console.log(expirationDate);
-          this.saveAuthData(token,expirationDate, this.userId);  
+          this.saveAuthData(token,expirationDate,this.userId._id,this.profession);  
           this.router.navigate(['/']);
         }
       }, error => {
@@ -106,8 +111,13 @@ export class AuthService {
       });
     }
 
-  getUserId() {
-    return this.userId._id;
+  getUserId() { 
+    return  this.identifiant;
+  }
+  getUserType(){
+    let profession = this.userId.profession;
+    console.log(profession);
+    return profession;
   }
 
     autoAuthUser(){
@@ -141,16 +151,18 @@ export class AuthService {
         this.logout();
       },duration * 1000);
     }
-    private saveAuthData(token : string , expirationDate: Date, userId: string){
+    private saveAuthData(token : string , expirationDate: Date, userId: string, identifiant:string){
       localStorage.setItem("token",token);
       localStorage.setItem("expiration", expirationDate.toISOString());
       localStorage.setItem("userId", userId);
+      localStorage.setItem("profession", identifiant);
     }
 
     private clearAuthData(){
       localStorage.removeItem("token");
       localStorage.removeItem("expiration");
       localStorage.removeItem("userId");
+      localStorage.removeItem("profession");
     }
     private getAuthData(){
         const token = localStorage.getItem("token");
@@ -165,5 +177,9 @@ export class AuthService {
           userId: userId
         }
     }
-   
+    
+   public getProfession(){
+     const prof = localStorage.getItem("profession");
+       return prof;
+   }
 }

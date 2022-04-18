@@ -109,7 +109,6 @@ export class MemberService {
   }
 
   getImage(img:string){
-    console.log("img service")
     return this.http.get<{ content: string }>("http://localhost:3000/auth/profileimg/" + img);
   }
 

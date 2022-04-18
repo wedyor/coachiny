@@ -6,6 +6,7 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
 import { HeadService } from "../header/head.service";
+import { TrainerData } from "../models/trainer.model";
 
 
 @Injectable({ providedIn: 'root' })
@@ -22,12 +23,14 @@ export class TrainerService {
     getTrainer(userId: string){
       return this.http.get<{
           _id: string;
+          introduction: string ;
           first_name: string;
           last_name: string;
           email: string;
           password: string;
           profile_image: string;
           profession: string;
+          status:string;
           members: Array<string>;
       }>("http://localhost:3000/auth/trainer/profile/" + userId);
     };  
@@ -64,10 +67,28 @@ export class TrainerService {
     }
   
     getImage(img:string){
-      console.log("img service")
       return this.http.get<{ content: string }>("http://localhost:3000/auth/trainer/profileimg/" + img);
     }
   
+    updateTrainer(id: string, first_name: string, last_name: string, email: string, password: string, status: string, members: Array<string>, introduction:string,profession :string,profile_image:string) {
+      let trainerData: TrainerData;
+      trainerData = {
+        id: id,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        password: password,
+        status : status,
+        profile_image: profile_image,
+        profession: profession,
+        introduction: introduction,
+        members : members
+      };
+      this.http.put("http://localhost:3000/trainer/profile/update/" + id, trainerData)
+        .subscribe(Response => {
+          this.router.navigate(["/"]);
+        })
+    };
 };
 
 

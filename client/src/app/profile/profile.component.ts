@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   form2: any;
   form3: any;
   prof: any;
+  profession : any ;
   image : string ='' ;
   private memberId: any;
   imagePreview: string | ArrayBuffer | null = "";
@@ -53,10 +54,13 @@ export class ProfileComponent implements OnInit {
 
     await this.route.paramMap.subscribe((paramMap: ParamMap) => {
       var al: string = "";
-      if (paramMap.has("id")) {
-        this.memberId = paramMap.get("id");
+      this.profession = this.authService.getProfession();
+     this.memberId = this.authService.getUserId();
+     console.log(this.memberId);
+     console.log(this.profession);
+      if (this.profession=='member') {
          this.memberService.getMember(this.memberId).subscribe((memberData) => {
-          if (memberData) {
+          console.log(memberData);
             this.member = {
               id: memberData._id,
               first_name: memberData.first_name,
@@ -80,62 +84,38 @@ export class ProfileComponent implements OnInit {
               height: this.member.height,
               weight: this.member.weight,
             });
-          } else {
-            this.trainerService.getTrainer(this.memberId).subscribe(
-              (memberData) => {
-                this.member = {
-                  id: memberData._id,
-                  first_name: memberData.first_name,
-                  last_name: memberData.last_name,
-                  password: memberData.password,
-                  email: memberData.email,
-                  profile_image: memberData.profile_image,
-                  profession: memberData.profession,
-                  members: memberData.members,
-                };
-                this.image = memberData.profile_image;
-                if (this.image != '') {
-                  this.getimg(this.image);
-                }
-               
-                this.prof = memberData.profession;
-                this.form1.setValue({
-                  first_name: this.member.first_name,
-                  last_name: this.member.last_name,
-                  email: this.member.email,
-                  height: '',
-                  weight: ''
-                });
-              }
-            );
-           
-          }
-         
-         
-          if (this.image != '') {
-            //console.log(memberData.profile_image);
-            // var image = new image();
-            console.log(this.image);
-            this.trainerService
-              .getImage(this.image)
-              .subscribe((data) => {
-                al = data.toString();
-                const imageName = "name.png";
-                const imageBlob = this.dataURItoBlob(al);
-                const imageFile = new File([imageBlob], imageName, {
-                  type: "image/png",
-                });
-                //console.log(typeof (imageFile));
-                this.form3.patchValue({ image: imageFile });
-                this.form3.get("image").updateValueAndValidity();
-                const reader = new FileReader();
-                reader.onload = () => {
-                  this.imagePreview = reader.result;
-                };
-                reader.readAsDataURL(imageFile);
-              });
-          }
+          
         });
+      }else {
+        this.trainerService.getTrainer(this.memberId).subscribe(
+          (memberData) => {
+            this.member = {
+              id: memberData._id,
+              first_name: memberData.first_name,
+              last_name: memberData.last_name,
+              email: memberData.email,
+              password: memberData.password,
+              status: memberData.status,
+              profile_image: memberData.profile_image,
+              profession: memberData.profession,
+              introduction:memberData.introduction,
+              members: memberData.members
+            };
+            this.image = memberData.profile_image;
+            if (this.image != '') {
+              this.getimg(this.image);
+            }
+           
+            this.prof = memberData.profession;
+            this.form1.setValue({
+              first_name: this.member.first_name,
+              last_name: this.member.last_name,
+              email: this.member.email,
+              height: '',
+              weight: ''
+            });
+          }
+        );
       }
     });
   }
@@ -144,9 +124,9 @@ export class ProfileComponent implements OnInit {
     var al: string = "";
       //console.log(memberData.profile_image);
       // var image = new image();
-      console.log(this.image);
+      //console.log(this.image);
       this.trainerService
-        .getImage(this.image)
+        .getImage(img)
         .subscribe((data) => {
           al = data.toString();
           const imageName = "name.png";
@@ -179,7 +159,7 @@ export class ProfileComponent implements OnInit {
   onUpdate(form1: NgForm) {
     if (this.form1.invalid) {
       return;
-    } else {
+    } else {if(this.profession=='member'){
       this.memberService.updateMember(
         this.member.id,
         this.form1.value.first_name,
@@ -190,8 +170,23 @@ export class ProfileComponent implements OnInit {
         this.form1.value.weight,
         this.member.profile_image
       );
+    }else {
+      this.trainerService.updateTrainer(
+        this.member.id,
+        this.form1.value.first_name,
+        this.form1.value.last_name,
+        this.form1.value.email,
+        this.member.password,
+        this.member.status,
+        this.member.profile_image,
+        this.member.introduction,
+        this.member.profession,
+        this.member.members
+      );
     }
   }
+  }
+
   onChangePass(form2: NgForm) {
     if (this.form2.invalid) {
       return;
