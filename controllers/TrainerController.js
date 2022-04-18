@@ -124,8 +124,7 @@ exports.updateTrainer = (req, res) => {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
-    password: req.body.password,
-    profile_image: req.body.profile_image,
+    password: req.body.password
   });
   trainer.updateOne({ _id: req.params.id }, trainerData).then((result) => {
     if (result.modifiedCount > 0) {
@@ -239,10 +238,9 @@ exports.getImage = (req, res) => {
 };
 
 exports.addMember =(req,res) => {
-  console.log("test");
   var memberdat = 
     {mid : req.body.mid , name:  req.body.name};
-  console.log(memberdat);
+  //console.log(memberdat);
  /* let trainerData =await  trainer.findOne({  _id: req.params.id });
    console.log(trainerData);
   console.log(req.body.mail);

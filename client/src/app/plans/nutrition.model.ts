@@ -1,6 +1,5 @@
 export interface nutritionData {
-	id: string;
-	memberId: Array<string>;
+	memberId: string;
 	Monday: Array<string>;
 	Tuesday: Array<string>;
 	Wednesday: Array<string>;

@@ -7,6 +7,7 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
 import { HeadService } from "../header/head.service";
+import { nutritionData } from "./nutrition.model";
 
 @Injectable({ providedIn: "root" })
 export class plansService {
@@ -17,7 +18,7 @@ export class plansService {
   ) {}
 
   CreateNutritionP() {
-      let a = "test";
+    let a = "test";
     return this.http
       .post("http://localhost:3000/plan/nutrition", a)
       .subscribe((Response) => {
@@ -25,9 +26,9 @@ export class plansService {
       });
   }
 
-  getNPlan(id : string){
+  getNPlan(id: string) {
     return this.http.get<{
-      id: string;
+      _id: string;
       memberId: Array<string>;
       Monday: Array<string>;
       Tuesday: Array<string>;
@@ -36,13 +37,13 @@ export class plansService {
       Friday: Array<string>;
       Saturday: Array<string>;
       Sunday: Array<string>;
-    }>("http://localhost:3000/plan/nutrition/"+id);
+    }>("http://localhost:3000/plan/nutrition/" + id);
   }
 
-  getWPlan(id : string){
+  getWPlan(id: string) {
     return this.http.get<{
-      id: string;
-      memberId: Array<string>;
+      _id: string;
+      memberId: string
       Monday: Array<string>;
       Tuesday: Array<string>;
       Wednesday: Array<string>;
@@ -50,6 +51,65 @@ export class plansService {
       Friday: Array<string>;
       Saturday: Array<string>;
       Sunday: Array<string>;
-    }>("http://localhost:3000/plan/workout/"+id);
+    }>("http://localhost:3000/plan/workout/" + id);
   }
+
+  editNplan(
+    pid:string,
+    memberId: string,
+    Monday: Array<string>,
+    Tuesday: Array<string>,
+    Wednesday: Array<string>,
+    Thursday: Array<string>,
+    Friday: Array<string>,
+    Saturday: Array<string>,
+    Sunday: Array<string>
+  ) {
+     let nutriPlan  = {
+       _id: pid,
+      memberId: memberId,
+      Monday: Monday,
+      Tuesday: Tuesday,
+      Wednesday: Wednesday,
+      Thursday: Thursday,
+      Friday: Friday,
+      Saturday:Saturday,
+      Sunday:Sunday
+     };
+     return this.http
+     .put("http://localhost:3000/plan/nutrition", nutriPlan)
+     .subscribe((Response) => {
+       this.router.navigate(["/"]);
+     });
+  }
+
+  editWplan(
+    pid:string,
+    memberId: string,
+    Monday: Array<string>,
+    Tuesday: Array<string>,
+    Wednesday: Array<string>,
+    Thursday: Array<string>,
+    Friday: Array<string>,
+    Saturday: Array<string>,
+    Sunday: Array<string>
+  ) {
+     let workPlan  = {
+       _id: pid,
+      memberId: memberId,
+      Monday: Monday,
+      Tuesday: Tuesday,
+      Wednesday: Wednesday,
+      Thursday: Thursday,
+      Friday: Friday,
+      Saturday:Saturday,
+      Sunday:Sunday
+     };
+     return this.http
+     .put("http://localhost:3000/plan/workout", workPlan)
+     .subscribe((Response) => {
+       this.router.navigate(["/"]);
+     });
+  }
+
 }

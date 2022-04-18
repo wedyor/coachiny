@@ -32,11 +32,20 @@ export class HeaderComponent implements OnInit {
      }
      onClickWorkoutPlan(){
       this.email = this.authService.getUserId();
-      this.router.navigate(['workout', this.email]);
+      if(this.authService.getProfession()=='member'){
+        this.router.navigate(['workout', this.email]);
+       }else{
+          this.router.navigate(['workout']);
+        }
+    
      }
      onClicknutriPlan(){
       this.email = this.authService.getUserId();
+      if(this.authService.getProfession()=='member'){
       this.router.navigate(['nutrition', this.email]);
+      }else{
+        this.router.navigate(['nutrition']);
+      }
      }
 
    /*onUpdate(email : string){  // this methode is for making the fetching available after profile updating
