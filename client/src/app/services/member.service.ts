@@ -21,9 +21,9 @@ export class MemberService {
     private headService: HeadService) { }
 
 
-  getMember(userId: string) {
-    return this.http.get<{
-      _id: string;
+getMember(userId: string) {
+    return  this.http.get<{
+       _id: string;
       first_name: string;
       last_name: string;
       email: string;
@@ -34,6 +34,7 @@ export class MemberService {
       profession: string;
     }>("http://localhost:3000/auth/profile/" + userId);
   };
+
   getTrainer(userId: string){
     return this.http.get<{
       _id: string;
@@ -123,8 +124,32 @@ export class MemberService {
       email: string;
       password: string;
       profile_image: string;
-      
+      introduction :string;
     }>("http://localhost:3000/user/user-list");
 
   }
+
+  async asMember(userId: string) {
+   this.http.get<{
+       _id: string;
+      first_name: string;
+      last_name: string;
+      email: string;
+      password: string;
+      height: string;
+      weight: string;
+      profile_image: string;
+      profession: string;
+    }>("http://localhost:3000/auth/profile/" + userId).subscribe(memberData => {
+      this.member = {
+        _id: memberData._id,
+        first_name: memberData.first_name,
+        height: memberData.height,
+        weight: memberData.weight
+      };
+    });
+    return await this.member ;
+  }
+
+ 
 }

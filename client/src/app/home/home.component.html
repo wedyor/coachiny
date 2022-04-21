@@ -1,7 +1,9 @@
 <body><br>
 <h1 style="text-align:center">Welcome To Coachiny </h1>
 <br>
-<h1 *ngIf='this.notActivated==false'>Waiting for approval !</h1>
+<mat-card *ngIf='this.notActivated==false' class="aproval">
+  <mat-card-title> Waiting for admin aproval !</mat-card-title>
+</mat-card>
 <div *ngIf='this.notActivated==true'>
 <form [formGroup]="form" >
 <div *ngFor="let trainer of trainers; let i = index">
@@ -18,7 +20,7 @@
   <h1>{{trainer.first_name}} {{trainer.last_name}}</h1>
   <p class="title">Certified Personal Trainer</p>
   <p>{{trainer.email}}</p>
-  <p> <button type="button" class="btn btn-danger btn-sm"(click)="send(trainer[i]._id)">View Profile</button></p>
+  <p> <button type="button" class="btn btn-danger btn-sm"(click)="send(trainers[i]._id)">View Profile</button></p>
 </div>
 </div>
 </form>

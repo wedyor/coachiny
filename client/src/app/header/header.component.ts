@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { AuthService } from "../auth/auth.service" ;
 import { HeadService } from "./head.service";
-import { Router } from "@angular/router";
+import { Router,NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized  } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,12 +12,19 @@ import { Router } from "@angular/router";
 
 export class HeaderComponent implements OnInit {
   userIsAuthenticated = false;
+  profession : any ;
   private authListenerSubs: Subscription = new Subscription;
   
   constructor(private authService: AuthService, private headService : HeadService ,private router: Router) {  }
   public email : string = "";
 
   ngOnInit() {
+    this.router.events.forEach((event) => {
+      if(event instanceof NavigationStart) {
+        this.profession = this.authService.getProfession();
+       // console.log(this.profession);
+      }
+    });
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
@@ -32,7 +39,7 @@ export class HeaderComponent implements OnInit {
      }
      onClickWorkoutPlan(){
       this.email = this.authService.getUserId();
-      if(this.authService.getProfession()=='member'){
+      if(this.profession =='member'){
         this.router.navigate(['workout', this.email]);
        }else{
           this.router.navigate(['workout']);
@@ -41,7 +48,7 @@ export class HeaderComponent implements OnInit {
      }
      onClicknutriPlan(){
       this.email = this.authService.getUserId();
-      if(this.authService.getProfession()=='member'){
+      if(this.profession =='member'){
       this.router.navigate(['nutrition', this.email]);
       }else{
         this.router.navigate(['nutrition']);

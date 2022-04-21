@@ -18,7 +18,7 @@
       <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
     </li>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/Payment" routerLinkActive="mat-accent">Payment</a>
+      <a mat-button routerLink="/members" routerLinkActive="mat-accent" *ngIf="this.profession =='trainer'">Members</a>
     </li>
     <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>

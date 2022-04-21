@@ -7,6 +7,7 @@ const router = express.Router();
 const fs = require("fs");
 const member = require('../models/member.model');
 const mime = require("mime");
+const HireReq = require("../models/hire.model");
 
 exports.register = async (req, res) => {
   const v = new Validator(req.body, {
@@ -237,20 +238,22 @@ exports.getImage = (req, res) => {
   });
 };
 
-exports.addMember =(req,res) => {
+exports.addMember = async (req,res) => {
+  console.log(req.body.hireId);
   var memberdat = 
-    {mid : req.body.mid , name:  req.body.name};
+    {mid : req.body.memberId , name:  req.body.memberName};
   //console.log(memberdat);
- /* let trainerData =await  trainer.findOne({  _id: req.params.id });
+  let trainerData =await  trainer.findOne({  _id: req.params.id });
    console.log(trainerData);
-  console.log(req.body.mail);
-  console.log(req.body.memberName); */
-  let mail =  req.body.mail ;
+  //console.log(req.body.memberName); 
+ let mail =  req.body.mail ;
   trainer.updateOne({ _id:  req.params.id }, { $push: {members: memberdat} }).then((result) => {
     if (result.modifiedCount > 0) {
-      res.status(200).json({ message: "Update successful !" });
+      HireReq.deleteOne({_id: req.body.hireId }).then(console.log("succcc"));
+      res.status(200).json({ message: "Request accepted !" });
     } else {
       res.status(401).json({ message: "not authorized" });
     }
   });
 }
+
