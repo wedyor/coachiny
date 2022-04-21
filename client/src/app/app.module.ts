@@ -30,7 +30,9 @@ import { ErrorComponent } from './error/error.component';
 import { TrainerViewComponent } from './trainer-view/trainer-view.component';
 import { nutrtionPlan } from './plans/nutrition/nutrition.component';
 import { workoutPlan } from './plans/workout/workout.component';
-import { AdminHomeComponent } from './admin-home/admin-home.component';  
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { DialogMessageComponent } from './dialog-message/dialog-message.component';  
+import { membersComponent } from './members/members.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,10 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
     TrainerViewComponent,
     nutrtionPlan,
     workoutPlan,
-    AdminHomeComponent
-  ],
+    AdminHomeComponent,
+    DialogMessageComponent,
+    membersComponent
+  ],entryComponents :[DialogMessageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

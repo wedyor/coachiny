@@ -11,6 +11,7 @@ import { nutritionData } from "./nutrition.model";
 
 @Injectable({ providedIn: "root" })
 export class plansService {
+  private editResponse : any ;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -54,7 +55,7 @@ export class plansService {
     }>("http://localhost:3000/plan/workout/" + id);
   }
 
-  editNplan(
+  async editNplan(
     pid:string,
     memberId: string,
     Monday: Array<string>,
@@ -76,14 +77,13 @@ export class plansService {
       Saturday:Saturday,
       Sunday:Sunday
      };
-     return this.http
-     .put("http://localhost:3000/plan/nutrition", nutriPlan)
-     .subscribe((Response) => {
-       this.router.navigate(["/"]);
-     });
+     this.editResponse =  await this.http
+     .put<{message: string}>("http://localhost:3000/plan/nutrition", nutriPlan)
+     .toPromise();
+     return this.editResponse;
   }
 
-  editWplan(
+  async editWplan(
     pid:string,
     memberId: string,
     Monday: Array<string>,
@@ -105,11 +105,10 @@ export class plansService {
       Saturday:Saturday,
       Sunday:Sunday
      };
-     return this.http
-     .put("http://localhost:3000/plan/workout", workPlan)
-     .subscribe((Response) => {
-       this.router.navigate(["/"]);
-     });
+     this.editResponse = await this.http
+     .put<{message : string }>("http://localhost:3000/plan/workout", workPlan)
+     .toPromise();
+     return this.editResponse;
   }
 
 }

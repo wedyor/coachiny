@@ -6,7 +6,14 @@ import { MemberService } from "src/app/services/member.service";
 import { AuthService } from "src/app/auth/auth.service";
 import { plansService } from "../plans.service";
 import { TrainerService } from "src/app/services/trainer.service";
+import {MatDialog} from '@angular/material/dialog';
+import { DialogMessageComponent } from "src/app/dialog-message/dialog-message.component";
 
+
+export interface DialogData {
+  title: string;
+  message: string;
+}
 @Component({
   selector: "app-nplan",
   templateUrl: "./nutrition.component.html",
@@ -27,7 +34,8 @@ export class nutrtionPlan implements OnInit {
     public authService: AuthService,
     public memberService: MemberService,
     public plansService: plansService,
-    public trainerService: TrainerService
+    public trainerService: TrainerService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -157,7 +165,7 @@ export class nutrtionPlan implements OnInit {
     });
   }
 
-  EditNplan(nutriForm: NgForm) {
+  async EditNplan(nutriForm: NgForm) {
     let Monday: Array<string> = [
       this.nutriForm.value.Breakfast1,
       this.nutriForm.value.Lunch1,
@@ -194,7 +202,7 @@ export class nutrtionPlan implements OnInit {
       this.nutriForm.value.Dinner7,
     ];
 
-    this.plansService.editNplan(
+    let a = await this.plansService.editNplan(
       this.nutriPlan.pid,
       this.nutriPlan.memberId,
       Monday,
@@ -205,7 +213,14 @@ export class nutrtionPlan implements OnInit {
       Saturday,
       Sunday
     );
+     this.openDialog(a.message);
   }
 
-  getMembers(id: string) {}
+  openDialog(msg: string){
+      this.dialog.open(DialogMessageComponent, {data :{message :msg} });
+  }
+
+
+
+
 }

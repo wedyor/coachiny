@@ -64,7 +64,6 @@ export class HomeComponent implements OnInit {
       const base64Img = await this.trainerService.getImage(trainer.profile_image).toPromise();
       const ext = trainer.profile_image.split(".").pop(); 
       trainer.dataSource =  this.sanitizer.bypassSecurityTrustUrl('data:image/'+ ext + ';charset=utf-8;base64, ' + base64Img );
-     
     }
   }
        //this.getimg(this.trainers[0].profile_image);

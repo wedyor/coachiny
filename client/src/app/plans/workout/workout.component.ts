@@ -1,11 +1,19 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { FormControl, FormGroup, NgForm} from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { workoutData } from "../workout.model";
 import { MemberService } from "src/app/services/member.service";
 import { AuthService } from "src/app/auth/auth.service";
 import { plansService } from "../plans.service";
 import { TrainerService } from "src/app/services/trainer.service";
+import {MatDialog} from '@angular/material/dialog';
+import { DialogMessageComponent } from "src/app/dialog-message/dialog-message.component"
+
+
+export interface DialogData {
+  title: string;
+  message: string;
+}
 
 @Component({
   selector: "app-wplan",
@@ -25,7 +33,8 @@ export class workoutPlan implements OnInit {
     public authService: AuthService,
     public memberService: MemberService,
     public plansService: plansService,
-    public trainerService :TrainerService
+    public trainerService :TrainerService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -132,7 +141,7 @@ export class workoutPlan implements OnInit {
     });
   }
 
-  EditWplan(nutriForm: NgForm) {
+  async EditWplan(nutriForm: NgForm) {
     let Monday: Array<string> = [
       this.workoutForm.value.S1Monday,
       this.workoutForm.value.S2Monday
@@ -163,7 +172,7 @@ export class workoutPlan implements OnInit {
       this.workoutForm.value.S2Sunday,
     ];
 
-    this.plansService.editWplan(
+    let a = await this.plansService.editWplan(
       this.workoutPlan.pid,
       this.workoutPlan.memberId,
       Monday,
@@ -174,6 +183,10 @@ export class workoutPlan implements OnInit {
       Saturday,
       Sunday
     );
+    this.openDialog(a.message);
+
   }
-  
+  openDialog(msg: string){
+      this.dialog.open(DialogMessageComponent, {data :{message :msg} });
+  }
 }
