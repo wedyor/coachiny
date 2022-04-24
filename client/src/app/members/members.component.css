@@ -24,3 +24,9 @@ mat-card {
     margin: 5px;
     color:rgb(34, 44, 178);
 }
+
+.req{
+    width: 340px;
+    height: 70px;
+    margin-left: 550px;
+  }

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { AuthService } from "../auth/auth.service" ;
 import { HeadService } from "./head.service";
+import { TrainerService } from "../services/trainer.service";
 import { Router,NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized  } from "@angular/router";
 
 @Component({
@@ -13,9 +14,11 @@ import { Router,NavigationStart, NavigationEnd, NavigationError, NavigationCance
 export class HeaderComponent implements OnInit {
   userIsAuthenticated = false;
   profession : any ;
+  hires : any;
+  notif : any;
   private authListenerSubs: Subscription = new Subscription;
   
-  constructor(private authService: AuthService, private headService : HeadService ,private router: Router) {  }
+  constructor(private authService: AuthService, private headService : HeadService ,private router: Router, private trainerService :TrainerService) {  }
   public email : string = "";
 
   ngOnInit() {
@@ -31,10 +34,16 @@ export class HeaderComponent implements OnInit {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+      
+      this.trainerService.getHireRequest().subscribe(hires=>{
+        this.hires = hires
+        this.notif=this.hires.length
+        console.log(this.hires.length);
+      })
      } 
   
      onClickProfile(){
-       this.email = this.authService.getUserId();
+       this.email = localStorage.getItem("userId") || "";
        this.router.navigate(['profile', this.email]);
      }
      onClickWorkoutPlan(){

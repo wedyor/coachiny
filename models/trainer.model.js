@@ -9,7 +9,7 @@ const schema = new mongoose.Schema(
     status: { type: String, default: "NA" },
         profile_image: { type: String, default: "" },
     profession: { type: String, default: "trainer" },
-    intro: { type: String, default: "" },
+    intro: { type: String, default: "Empty introduction" },
     status:{ type: String, default: "NA" },
     members: [
       {mid : String , name: String}

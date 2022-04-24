@@ -10,6 +10,7 @@ router.put('/update/:id', TrainerController.updateTrainer);
 router.get('/profile/:id',TrainerController.getTrainer);
 router.post('/change-password/:id',TrainerController.change_password);
 router.put('/addmember/:id', TrainerController.addMember);
+router.post('/deletemember', TrainerController.deleteMember);
 router.get('/:id',TrainerController.getTrainer);
 
 router.post("/profileimg/:id", TrainerController.updatePicture);

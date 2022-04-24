@@ -120,12 +120,17 @@ exports.getTrainer = (req, res) => {
 };
 
 exports.updateTrainer = (req, res) => {
+ // console.log(req.body);
   const trainerData = new trainer({
     _id: req.body.id,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    status : req.body.status,
+    members: req.body.members,
+    profile_image: req.body.profile_image,
+    intro : req.body.introduction
   });
   trainer.updateOne({ _id: req.params.id }, trainerData).then((result) => {
     if (result.modifiedCount > 0) {
@@ -215,7 +220,7 @@ exports.updatePicture = (req, res) => {
       if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Update successful !" });
       } else {
-        console.log("here");
+        //console.log("here");
         res.status(401).json({ message: "not authorized" });
       }
     });
@@ -239,7 +244,7 @@ exports.getImage = (req, res) => {
 };
 
 exports.addMember = async (req,res) => {
-  console.log(req.body.hireId);
+ // console.log(req.body.hireId);
   var memberdat = 
     {mid : req.body.memberId , name:  req.body.memberName};
   //console.log(memberdat);
@@ -251,6 +256,16 @@ exports.addMember = async (req,res) => {
     if (result.modifiedCount > 0) {
       HireReq.deleteOne({_id: req.body.hireId }).then(console.log("succcc"));
       res.status(200).json({ message: "Request accepted !" });
+    } else {
+      res.status(401).json({ message: "not authorized" });
+    }
+  });
+}
+
+exports.deleteMember=(req,res)=>{
+  HireReq.deleteOne({_id: req.body.hireId }).then((result) => {
+    if (result.deletedCount > 0) {
+      res.status(200).json({ message: "Request deleted !" });
     } else {
       res.status(401).json({ message: "not authorized" });
     }

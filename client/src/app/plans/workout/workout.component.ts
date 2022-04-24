@@ -57,7 +57,8 @@ export class workoutPlan implements OnInit {
     });
 
     this.profession = this.authService.getProfession();
-    this.memberId = this.authService.getUserId();
+   // this.memberId = this.authService.getUserId();
+    this.memberId = localStorage.getItem("userId") || "";
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (this.profession == "member") {
         this.plansService.getWPlan(this.memberId).subscribe((workoutData) => {
@@ -92,6 +93,7 @@ export class workoutPlan implements OnInit {
         this.trainerService
            .getTrainer(this.memberId)
          .subscribe( async (TrainerData) => {
+           console.log(TrainerData);
              this.trainer = {
                id: TrainerData._id,
                first_name: TrainerData.first_name,
