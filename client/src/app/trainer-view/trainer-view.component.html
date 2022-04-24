@@ -5,7 +5,11 @@
         <div>
           <div class="row grid clearfix">
             <div class="col2 first">
-              <img src="http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg" alt="">
+              <form [formGroup]="form" id="profile">
+                <div *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+              <img [src]="imagePreview" >
+            </div>
+            </form>
               <h1>{{ this.trainer.first_name }}</h1>
               <p>{{ this.trainer.last_name}}</p>
               <button   (click)="onHireTrainer()" *ngIf="this.profession == 'member' ">Hire Trainer</button>

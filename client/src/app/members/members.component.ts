@@ -31,7 +31,7 @@ export interface DialogData {
    ngOnInit(){
         this.trainerService.getHireRequest().subscribe(hires=>{
                this.hires = hires
-             console.log(hires);
+             console.log(this.hires.length);
         })
     }
     
@@ -48,6 +48,11 @@ async onAccept(trainerId:string,memberName:string,memberId: string,hiresId:strin
      dial.afterClosed().subscribe(result =>{
         window.location.reload();
     })
+}
+async onReject(id :string){
+  this.msg = await this.trainerService.onRejectReq(id);
+  console.log(this.msg);
+  this.openDialog(this.msg.message);
 }
 
   }

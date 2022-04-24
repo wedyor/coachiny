@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
       email: new FormControl(null, { validators: [] }),
       height: new FormControl(null, { validators: [] }),
       weight: new FormControl(null, { validators: [] }),
+      intro: new FormControl(null, { validators: [] })
     });
 
     this.form2 = new FormGroup({
@@ -55,12 +56,12 @@ export class ProfileComponent implements OnInit {
     await this.route.paramMap.subscribe((paramMap: ParamMap) => {
       var al: string = "";
       this.profession = this.authService.getProfession();
-     this.memberId = this.authService.getUserId();
+     //this.memberId = this.authService.getUserId();
+     this.memberId = localStorage.getItem("userId") || "";
      console.log(this.memberId);
      console.log(this.profession);
       if (this.profession=='member') {
          this.memberService.getMember(this.memberId).subscribe((memberData) => {
-          console.log(memberData);
             this.member = {
               id: memberData._id,
               first_name: memberData.first_name,
@@ -83,6 +84,7 @@ export class ProfileComponent implements OnInit {
               email: this.member.email,
               height: this.member.height,
               weight: this.member.weight,
+              intro : 'empty'
             });
           
         });
@@ -98,21 +100,21 @@ export class ProfileComponent implements OnInit {
               status: memberData.status,
               profile_image: memberData.profile_image,
               profession: memberData.profession,
-              introduction:memberData.introduction,
+              introduction:memberData.intro,
               members: memberData.members
             };
             this.image = memberData.profile_image;
             if (this.image != '') {
               this.getimg(this.image);
             }
-           
             this.prof = memberData.profession;
             this.form1.setValue({
               first_name: this.member.first_name,
               last_name: this.member.last_name,
               email: this.member.email,
               height: '',
-              weight: ''
+              weight: '',
+              intro: this.member.introduction
             });
           }
         );
@@ -178,10 +180,11 @@ export class ProfileComponent implements OnInit {
         this.form1.value.email,
         this.member.password,
         this.member.status,
-        this.member.profile_image,
-        this.member.introduction,
+        this.member.members,
+        this.form1.value.intro,
         this.member.profession,
-        this.member.members
+        this.member.profile_image,
+
       );
     }
   }

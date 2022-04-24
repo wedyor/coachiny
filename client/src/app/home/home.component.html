@@ -17,9 +17,11 @@
 <img src='../../assets/default.jpg' alt="John" style="width:100%">
 </ng-container>
 
-  <h1>{{trainer.first_name}} {{trainer.last_name}}</h1>
+ <!--  <h1>{{trainer.first_name}} {{trainer.last_name}}</h1> -->
   <p class="title">Certified Personal Trainer</p>
-  <p>{{trainer.email}}</p>
+  <p>{{trainer.first_name}}</p>
+
+ <p>{{trainer.email}}</p>
   <p> <button type="button" class="btn btn-danger btn-sm"(click)="send(trainers[i]._id)">View Profile</button></p>
 </div>
 </div>

@@ -64,7 +64,7 @@ export class nutrtionPlan implements OnInit {
     });
 
     this.profession = this.authService.getProfession();
-    this.memberId = this.authService.getUserId();
+    this.memberId = localStorage.getItem("userId") || "";
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (this.profession == "member") {
         // change to local storage management

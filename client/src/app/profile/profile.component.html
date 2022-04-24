@@ -62,6 +62,10 @@
           <mat-label> weight </mat-label>
           <input matInput type="text" formControlName="weight" placeholder="weight">
         </mat-form-field>
+        <mat-form-field appearance="fill" *ngIf="this.prof!='member'">
+          <mat-label> Introduction </mat-label>
+          <input matInput type="text" formControlName="intro" placeholder="Introduction">
+        </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Save</button>
       </form>
     </mat-card>

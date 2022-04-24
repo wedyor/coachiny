@@ -24,7 +24,7 @@ export class TrainerService {
   getTrainer(userId: string) {
     return this.http.get<{
       _id: string;
-      introduction: string;
+      intro: string;
       first_name: string;
       last_name: string;
       email: string;
@@ -119,7 +119,7 @@ export class TrainerService {
       height: height,
       weight: weight,
     };
-    console.log(hireData);
+    //console.log(hireData);
     this.editResponse = await this.http
       .post<{ message: string }>("http://localhost:3000/user/hire", hireData)
       .toPromise();
@@ -145,6 +145,12 @@ async onAcceptReq(trainerid: string, memberId: string, memberName: string,hiresI
   let a = await this.http.put<{ message : string}>("http://localhost:3000/trainer/profile/addmember/" + trainerid,data).toPromise();
   return a ;
 }
-
+async onRejectReq(hiresId:string){
+let data = {
+    hireId: hiresId
+  };
+let a = await this.http.post<{ message : string}>("http://localhost:3000/trainer/profile/deletemember/",data).toPromise();
+return a ;
+}
 
 }
