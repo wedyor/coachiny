@@ -1,10 +1,16 @@
+<body>
+  <video id="background-video" autoplay loop muted poster="home.jpg">
+    <source src="../../../assets/vid.mp4" type="video/mp4">
+  </video>
+
+  <div class="card">
 <div class="publicPage">
   <div class="container">
     <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
+      
+       
           <div class="card-body">
-            <h5 class="card-title text-center">Sign In</h5>
+            <h2 class="card-title text-center">Sign In</h2>
             <form class="form-signin" (submit)="onLogin(loginForm)" #loginForm="ngForm">
               <div class="form-group">
                 <label for="inputEmail">Email address *</label>
@@ -27,9 +33,17 @@
                 [disabled]="!loginForm.valid || processing">{{ processing ? 'Validating...' : 'Sign in' }}</button>
 
             </form>
-          </div>
+        
         </div>
       </div>
-    </div>
   </div>
 </div>
+</div>
+<div class="content">
+  <h1>Welcom to COACHINY</h1>
+  <p>
+    For a personalized training and a customized program, COACHINY offers you the possibility to consult the coaches' profiles and to hire your private coaching sessions. </p>
+  <!-- Use a button to pause/play the video with JavaScript -->
+  <button id="myBtn" >Contact-Us</button>
+</div>
+</body>
