@@ -66,13 +66,18 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 
 .innerwrap {
     width: 1200px;
-    margin: 0 auto;
+   
+	margin: auto;
+
+	
+	padding: 20px;
 }
 
 .section1 {
 	background: #fff;
 	position: relative;
 	border-radius: 2px;
+	
 }
 .section1 div .row:first-child {
 	padding: 25px;
@@ -277,7 +282,8 @@ section.section2 {
 }
 @media only screen and (max-width: 450px) {
 	.container {
-    padding: 60px 5px 70px;
+    padding: 100px 5px 70px;
+	
 }
   .row2tab li {
 		width: 100%;
