@@ -10,31 +10,23 @@
               <img [src]="imagePreview" >
             </div>
             </form>
-              <h1>{{ this.trainer.first_name }}</h1>
-              <p>{{ this.trainer.last_name}}</p>
+              <h1>{{ this.trainer.first_name }}  {{ this.trainer.last_name}}</h1>
+              <p>{{ this.trainer.introduction}}</p>
               <button   (click)="onHireTrainer()" *ngIf="this.profession == 'member' ">Hire Trainer</button>
             </div>
             <div class="col2 last">
               <div class="grid clearfix">
                 <div class="col3 first">
-                  <h1>694</h1>
-                  <span>Following</span>
+                  <span>Has trained</span>
+                  <h1>694</h1>  
                 </div>
-                <div class="col3"><h1>452</h1>
-                <span>Likes</span></div>
-                <div class="col3 last"><h1>1207</h1>
-                <span>Bookmarks</span></div>
+                <div class="col3"><span>Is training</span>
+                  <h1>452</h1></div>
+                <div class="col3 last"><span>Bookmarked by</span>
+                <h1>1207</h1></div>
               </div>
               
             </div>
-          </div>
-          <div class="row clearfix">
-            <ul class="row2tab clearfix">
-              <li><i class="fa fa-list-alt"></i> My posts </li>
-              <li><i class="fa fa-heart"></i> My likes </li>
-              <li><i class="fa fa-check"></i> Following </li>
-              <li><i class="fa fa-thumbs-o-up "></i> Suggestions </li>
-            </ul>
           </div>
         </div>
         <span class="smalltri">
