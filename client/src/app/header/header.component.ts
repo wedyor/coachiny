@@ -26,6 +26,11 @@ export class HeaderComponent implements OnInit {
       if(event instanceof NavigationStart) {
         this.profession = this.authService.getProfession();
        // console.log(this.profession);
+       this.trainerService.getHireRequest().subscribe(hires=>{
+        this.hires = hires
+        this.notif=this.hires.length
+        console.log(this.hires.length);
+      })
       }
     });
     this.userIsAuthenticated = this.authService.getIsAuth();
@@ -35,11 +40,7 @@ export class HeaderComponent implements OnInit {
         this.userIsAuthenticated = isAuthenticated;
       });
       
-      this.trainerService.getHireRequest().subscribe(hires=>{
-        this.hires = hires
-        this.notif=this.hires.length
-        console.log(this.hires.length);
-      })
+     
      } 
   
      onClickProfile(){
