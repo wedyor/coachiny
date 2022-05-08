@@ -61,7 +61,7 @@ getMember(userId: string) {
     };
     this.http.put("http://localhost:3000/auth/profile/" + id, memberData)
       .subscribe(Response => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       })
   };
 
@@ -74,7 +74,7 @@ getMember(userId: string) {
     };
     this.http.post("http://localhost:3000/auth/change-password/" + id, passData)
       .subscribe(Response => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       })
   }
 
@@ -84,7 +84,7 @@ getMember(userId: string) {
     a.append("image", this.imageD);
     this.http.post("http://localhost:3000/auth/profileimg/" + id, a)
       .subscribe(Response => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       });
 
   }

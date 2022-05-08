@@ -10,11 +10,13 @@ import { workoutPlan } from './plans/workout/workout.component';
 import { nutrtionPlan } from './plans/nutrition/nutrition.component';
 import {AdminHomeComponent} from './admin-home/admin-home.component';
 import { membersComponent } from './members/members.component';
+import { WelcomeComponent } from './welcom/welcome.component';
 
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate : [AuthGuard] },
+  { path: '', component: WelcomeComponent },
+  { path: 'home', component: HomeComponent, canActivate : [AuthGuard] },
   { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login' , component: LoginComponent},
   { path: 'register' , component:RegisterComponent},

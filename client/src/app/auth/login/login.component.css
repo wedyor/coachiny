@@ -4,18 +4,21 @@ input.form-control.rounded {
 
 
 .card-signin {
+ 
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
 .card-signin .card-title {
+  
   margin-bottom: 2rem;
   font-weight: 300;
   font-size: 1.5rem;
 }
 
 .card-signin .card-body {
+ 
   padding: 2rem;
   
 }
@@ -25,6 +28,8 @@ input.form-control.rounded {
 }
 
 .form-signin .btn {
+  background-color: #fa800e;
+  border-color: #000000;
   font-size: 80%;
   border-radius: 5rem;
   letter-spacing: .1rem;
@@ -102,7 +107,7 @@ input.form-control.rounded {
 
 .btn-facebook {
   color: white;
-  background-color: #3b5998;
+  background-color: #f59b51;
 }
 
  /* body{
@@ -138,7 +143,7 @@ input.form-control.rounded {
  .card {
   height :300px;
   width: 450px;
-  margin-top: 120px;
+  margin-top: 200px;
     text-align: center;
     font-family: arial;
     margin-left: 100px;

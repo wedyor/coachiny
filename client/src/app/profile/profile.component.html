@@ -1,4 +1,5 @@
 <body>
+  <div class="del">
   <div class="profile-div">
     <mat-card class="profile-img">
       <form [formGroup]="form3" (submit)="onUpdateImage(form3)">
@@ -64,10 +65,11 @@
         </mat-form-field>
         <mat-form-field appearance="fill" *ngIf="this.prof!='member'">
           <mat-label> Introduction </mat-label>
-          <input matInput type="text" formControlName="intro" placeholder="Introduction">
+          <textarea matInput formControlName="intro" placeholder="Introduction" class="textArea"></textarea>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">Save</button>
       </form>
     </mat-card>
   </div>
+</div>
 </body>

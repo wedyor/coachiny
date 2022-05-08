@@ -43,7 +43,7 @@ export class TrainerService {
     this.http
       .post("http://localhost:3000/auth/trainer/profileimg/" + id, a)
       .subscribe((Response) => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       });
   }
 
@@ -101,7 +101,7 @@ export class TrainerService {
     this.http
       .put("http://localhost:3000/trainer/profile/update/" + id, trainerData)
       .subscribe((Response) => {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       });
   }
 

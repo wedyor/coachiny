@@ -1,7 +1,9 @@
 input.form-control.rounded {
   border-radius: 2rem !important;
 }
-
+.cardr{
+  margin-top: 100px;
+}
 .card-signin {
   border: 0;
   border-radius: 1rem;
@@ -24,6 +26,8 @@ input.form-control.rounded {
 }
 
 .form-signin .btn {
+  background-color: #fa800e;
+  border-color: #000000;
   font-size: 80%;
   border-radius: 5rem;
   letter-spacing: .1rem;
@@ -103,11 +107,12 @@ input.form-control.rounded {
   color: white;
   background-color: #3b5998;
 }
-
-div.publicPage {
-  
-  background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
-  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  
-  height: 800px;
-  }
-
+.publicPage{
+  background-image: url('../../../assets/img/hero/hero-2.jpg');
+  width: 100%;
+  height: 130%;
+  position: absolute;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+}
