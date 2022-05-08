@@ -106,7 +106,7 @@ export class AuthService {
           const expirationDate = new Date(now.getTime()+ expiresInDuration * 1000);
           console.log(expirationDate);
           this.saveAuthData(token,expirationDate,this.userId._id,this.profession,this.status);  
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         }
       }, error => {
         console.log(error.error.message);
@@ -146,7 +146,7 @@ export class AuthService {
       clearTimeout(this.tokenTimer);
       this.clearAuthData();
       this.userId = null;
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
     private setAuthTimer(duration : number){
       console.log("Setting timer : "+ duration);

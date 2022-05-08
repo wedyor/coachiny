@@ -26,6 +26,7 @@ export class TrainerViewComponent implements OnInit {
   form : any ;
   image: any;
   member: any;
+  hires : any;
   imagePreview:string | ArrayBuffer | null = "";
   profession: any;
   private TrainerId: any;
@@ -46,6 +47,10 @@ export class TrainerViewComponent implements OnInit {
     });
     this.profession = localStorage.getItem("profession");
     this.getTrainer();
+    this.trainerService.getHireRequest().subscribe(hires=>{
+      this.hires = hires
+    console.log(this.hires.length);
+})
   }
 
   getTrainer() {
@@ -59,6 +64,7 @@ export class TrainerViewComponent implements OnInit {
             last_name: data.last_name,
             profile_image: data.profile_image,
             introduction: data.intro,
+            members: data.members
           };
           if (this.trainer.profile_image != '') {
             this.getimg(this.trainer.profile_image);

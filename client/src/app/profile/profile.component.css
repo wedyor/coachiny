@@ -3,6 +3,9 @@ textarea {
   width: 100%;
 }
 
+.del{
+  margin-top: 150px;
+}
 h6{
   text-align : center;
   font-weight:bold;
@@ -15,11 +18,13 @@ body, html {
     padding: 0;  
 }
 body {
-    /*vertical-align:middle;*/
-  background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
-  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  
+  background-image: url('../../assets/img/hero/hero-1.jpg');
+  width: 100%;
   height: 130%;
-   position: absolute;
+  position: absolute;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
 }
 form {
  width: 550px;
@@ -33,23 +38,22 @@ input {
 .profile-details{
   width: 600px;
   height: 610px;
-  margin-left: 120px;
+  margin-left: 100px;
 }
 .profile-img{
-  margin-left: 20px;
+  margin-left: 10px;
   width: 400px;
   height: 300px;
 }
 .profile-div{
   position: absolute;
-  top: 50px;
   margin-left: 250px;
   display: flex;
 }
 
 .profile-pass{
   margin-top: 320px;
-  margin-left: 20px;
+  margin-left: 10px;
   position: absolute;
   width: 400px;
   height: 400px;
@@ -94,3 +98,8 @@ input[type="file"] {
 .button-save.margin-right {
   margin-right: 20px;
 }*/
+
+.textArea {
+  width: 100%;
+  height: 120px;
+}

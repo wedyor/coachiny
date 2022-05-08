@@ -21,7 +21,6 @@ export class AdminService {
       password: string;
       profile_image: string;
       status: string;
-      
     }>("http://localhost:3000/admin/home");
     
   }
